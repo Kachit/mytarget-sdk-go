@@ -3,15 +3,15 @@ package mytarget_sdk
 import "time"
 
 type StatisticsPartnersPadsFilter struct {
-	DateFrom time.Time //Начальная дата
-	DateTo   time.Time //Конечная дата (включительно)
-	Id       string    //Список идентификаторов площадок или групп площадок
+	DateFrom time.Time //Start date
+	DateTo   time.Time //End date (included in the report)
+	Id       string    //List of pads or pad_group identifiers. You can specify different ids separating by comma, up to 150 ids.
 }
 
 type StatisticsPadsWithSitesFilter struct {
-	DateFrom time.Time //Начальная дата
-	DateTo   time.Time //Конечная дата (включительно)
-	Pads     string    //Список идентификаторов площадок
+	DateFrom time.Time //Start date
+	DateTo   time.Time //End date (included in the report)
+	Pads     string    //List of site identifiers.
 }
 
 type StatisticsResource struct {
