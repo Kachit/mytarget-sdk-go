@@ -19,16 +19,15 @@ package main
 import (
     "fmt"
     "net/http"
-    mytarget_sdk "github.com/kachit/mytarget-sdk-go"
+    mytarget_sdk "github.com/kachit/mytarget-sdk-go/src"
 )
 
 func yourFuncName(){ 
     cfg := mytarget_sdk.NewConfig()
 
-    client := mytarget_sdk.NewClient(cfg, http.Client{})
+    client := mytarget_sdk.NewClient(cfg, &http.Client{})
 
-    fmt.Print(response)
-    fmt.Print(err)
+    fmt.Print(client)
 }
 
 ```
