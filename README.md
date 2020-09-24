@@ -19,7 +19,7 @@ package main
 import (
     "fmt"
     "net/http"
-    mytarget_sdk "github.com/kachit/mytarget-sdk-go/src"
+    mytarget_sdk "github.com/kachit/mytarget-sdk-go"
 )
 
 func yourFuncName(){ 

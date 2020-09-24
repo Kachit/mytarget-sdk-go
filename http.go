@@ -33,7 +33,7 @@ func (rb *RequestBuilder) buildUri(path string, query map[string]interface{}) (u
 func (rb *RequestBuilder) buildHeaders() http.Header {
 	headers := http.Header{}
 	headers.Set("Content-Type", "application/json")
-	headers.Set("Authentication", "Bearer "+rb.cfg.Token)
+	headers.Set("Authentication", "Bearer "+rb.cfg.AccessToken)
 	return headers
 }
 

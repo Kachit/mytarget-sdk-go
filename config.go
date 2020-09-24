@@ -3,8 +3,8 @@ package mytarget_sdk
 const URI_PROD = "https://target.my.com"
 
 type Config struct {
-	Uri   string
-	Token string
+	Uri         string
+	AccessToken string
 }
 
 func NewConfig() *Config {
