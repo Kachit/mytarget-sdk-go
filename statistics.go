@@ -33,6 +33,7 @@ func (f *StatisticsPadsWithSitesFilter) Build() map[string]interface{} {
 }
 
 type StatisticsResource struct {
+	*ResourceAbstract
 }
 
 func (sr *StatisticsResource) GetPartnersPadsList(filter *StatisticsPartnersPadsFilter) {
