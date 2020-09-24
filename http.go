@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
@@ -48,6 +49,31 @@ func (rb *RequestBuilder) buildBody(data map[string]interface{}) (io.Reader, err
 type Transport struct {
 	http *http.Client
 	rb   *RequestBuilder
+}
+
+type Response struct {
+	raw *http.Response
+}
+
+func (r *Response) isSuccess() bool {
+	return r.raw.StatusCode <= 201
+}
+
+func (r *Response) Unmarshal(v interface{}) error {
+	data, err := r.ReadBody()
+	if err != nil {
+		return fmt.Errorf("Response@Unmarshal read body: %v", err)
+	}
+	err = json.Unmarshal(data, &v)
+	if err != nil {
+		return fmt.Errorf("Response@Unmarshal parse json error: %v", err)
+	}
+	return nil
+}
+
+func (r *Response) ReadBody() ([]byte, error) {
+	defer r.raw.Body.Close()
+	return ioutil.ReadAll(r.raw.Body)
 }
 
 func (t *Transport) request(method string, path string, query map[string]interface{}, body map[string]interface{}) (resp *http.Response, err error) {

@@ -1,0 +1,63 @@
+{
+  "items": [{
+    "id": 3359,
+    "rows": [{
+      "date": "2017-09-20",
+      "shows": 6412,
+      "clicks": 48,
+      "goals": 0,
+      "custom": 0,
+      "requests": 22126,
+      "requested_banners": 22126,
+      "responses": 19897,
+      "noshows": 2229,
+      "amount": "107.98",
+      "cpm": "16.84",
+      "ctr": 0.7485963817841547,
+      "fill_rate": 89.92587905631385
+    },
+      {
+        "date": "2017-09-21",
+        "shows": 6426,
+        "clicks": 47,
+        "goals": 1,
+        "custom": 0,
+        "requests": 21313,
+        "requested_banners": 21313,
+        "responses": 18859,
+        "noshows": 2454,
+        "amount": "108.15",
+        "cpm": "16.83",
+        "ctr": 0.7314036725801432,
+        "fill_rate": 88.48590062403228
+      }],
+    "total": {
+      "shows": 12838,
+      "clicks": 95,
+      "goals": 1,
+      "custom": 0,
+      "requests": 43439,
+      "requested_banners": 43439,
+      "responses": 38756,
+      "noshows": 4683,
+      "amount": "216.14",
+      "cpm": "16.84",
+      "ctr": 0.7399906527496495,
+      "fill_rate": 89.21936508667326
+    }
+  }],
+  "total": {
+    "shows": 12838,
+    "clicks": 95,
+    "goals": 1,
+    "custom": 0,
+    "requests": 43439,
+    "requested_banners": 43439,
+    "responses": 38756,
+    "noshows": 4683,
+    "amount": "216.14",
+    "cpm": "16.84",
+    "ctr": 0.7399906527496495,
+    "fill_rate": 89.21936508667326
+  }
+}
