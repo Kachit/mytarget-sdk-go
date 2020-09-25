@@ -59,8 +59,10 @@ func TestTransport_Request(t *testing.T) {
 	cfg := buildStubConfig()
 	transport := newHttpTransport(cfg, nil)
 
+	body, _ := loadStubResponseData("stubs/campaigns/list.success.json")
+
 	httpmock.RegisterResponder("GET", cfg.Uri+"/foo",
-		httpmock.NewStringResponder(http.StatusOK, buildStubResponseData()))
+		httpmock.NewBytesResponder(http.StatusOK, body))
 
 	resp, _ := transport.request("GET", "foo", nil, nil)
 	assert.NotEmpty(t, resp)

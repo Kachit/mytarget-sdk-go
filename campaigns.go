@@ -11,6 +11,12 @@ type CampaignsListFilter struct {
 
 func (f *CampaignsListFilter) Build() map[string]interface{} {
 	params := make(map[string]interface{})
+	if f.Limit != 0 {
+		params["limit"] = f.Limit
+	}
+	if f.Offset != 0 {
+		params["offset"] = f.Offset
+	}
 	return params
 }
 

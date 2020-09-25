@@ -14,8 +14,12 @@ func buildStubConfig() *Config {
 	return cfg
 }
 
-func buildStubResponseData() string {
-	return `{"result":true, "data":{}, "meta":{}, "errors":[]}`
+func buildStubClient() *Client {
+	return NewClient(buildStubConfig(), nil)
+}
+
+func loadStubResponseData(path string) ([]byte, error) {
+	return ioutil.ReadFile(path)
 }
 
 func buildStubResponse(json string) *http.Response {

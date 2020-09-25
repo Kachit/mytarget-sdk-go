@@ -1,6 +1,7 @@
 package mytarget_sdk
 
 import (
+	"fmt"
 	"time"
 )
 
@@ -8,6 +9,19 @@ type StatisticsPartnersPadsFilter struct {
 	DateFrom time.Time //Start date
 	DateTo   time.Time //End date (included in the report)
 	Ids      []int     //List of pads or pad_group identifiers. You can specify different ids separating by comma, up to 150 ids.
+}
+
+func (f *StatisticsPartnersPadsFilter) IsValid() error {
+	if f.DateFrom.IsZero() {
+		return fmt.Errorf("StatisticsPartnersPadsFilter@IsValid: %v", "DateFrom is required")
+	}
+	if f.DateTo.IsZero() {
+		return fmt.Errorf("StatisticsPartnersPadsFilter@IsValid: %v", "DateTo is required")
+	}
+	if len(f.Ids) == 0 {
+		return fmt.Errorf("StatisticsPartnersPadsFilter@IsValid: %v", "Ids is required")
+	}
+	return nil
 }
 
 func (f *StatisticsPartnersPadsFilter) Build() map[string]interface{} {
@@ -22,6 +36,19 @@ type StatisticsPadsWithSitesFilter struct {
 	DateFrom time.Time //Start date
 	DateTo   time.Time //End date (included in the report)
 	Pads     []int
+}
+
+func (f *StatisticsPadsWithSitesFilter) IsValid() error {
+	if f.DateFrom.IsZero() {
+		return fmt.Errorf("StatisticsPadsWithSitesFilter@IsValid: %v", "DateFrom is required")
+	}
+	if f.DateTo.IsZero() {
+		return fmt.Errorf("StatisticsPadsWithSitesFilter@IsValid: %v", "DateTo is required")
+	}
+	if len(f.Pads) == 0 {
+		return fmt.Errorf("StatisticsPadsWithSitesFilter@IsValid: %v", "Pads is required")
+	}
+	return nil
 }
 
 func (f *StatisticsPadsWithSitesFilter) Build() map[string]interface{} {
@@ -41,6 +68,10 @@ type StatisticsResource struct {
  * @return StatisticsPartnersPadsResult
  */
 func (sr *StatisticsResource) GetPartnersPadsList(filter *StatisticsPartnersPadsFilter) (*Response, error) {
+	err := filter.IsValid()
+	if err != nil {
+		return nil, err
+	}
 	return sr.get("api/v2/statistics/partner/pads/day.json", filter.Build())
 }
 
@@ -49,6 +80,10 @@ func (sr *StatisticsResource) GetPartnersPadsList(filter *StatisticsPartnersPads
  * @return StatisticsPartnersPadsResult
  */
 func (sr *StatisticsResource) GetPadsWithSitesList(filter *StatisticsPadsWithSitesFilter) (*Response, error) {
+	err := filter.IsValid()
+	if err != nil {
+		return nil, err
+	}
 	return sr.get("api/v2/statistics/pad_with_sites/day.json", filter.Build())
 }
 
