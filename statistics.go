@@ -114,7 +114,7 @@ type StatisticsPartnersPadsItem struct {
 }
 
 type StatisticsPartnersPadsRow struct {
-	Date             string        `json:"date"`
+	Date             CustomDate    `json:"date"`
 	Shows            int           `json:"shows"`
 	Clicks           int           `json:"clicks"`
 	Goals            int           `json:"goals"`

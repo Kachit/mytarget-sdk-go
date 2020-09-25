@@ -5,13 +5,13 @@ import (
 	"testing"
 )
 
-func TestClient_Statistics(t *testing.T) {
+func Test_Client_StatisticsResource(t *testing.T) {
 	client := buildStubClient()
 	result := client.Statistics()
 	assert.NotEmpty(t, result)
 }
 
-func TestClient_Campaigns(t *testing.T) {
+func Test_Client_CampaignsResource(t *testing.T) {
 	client := buildStubClient()
 	result := client.Campaigns()
 	assert.NotEmpty(t, result)

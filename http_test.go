@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func TestRequestBuilder_BuildUriWithoutQueryParams(t *testing.T) {
+func Test_HTTP_RequestBuilder_BuildUriWithoutQueryParams(t *testing.T) {
 	cfg := buildStubConfig()
 	builder := RequestBuilder{cfg: cfg}
 	uri, err := builder.buildUri("qwerty", nil)
@@ -16,7 +16,7 @@ func TestRequestBuilder_BuildUriWithoutQueryParams(t *testing.T) {
 	assert.Nil(t, err)
 }
 
-func TestRequestBuilder_BuildUriWithQueryParams(t *testing.T) {
+func Test_HTTP_RequestBuilder_BuildUriWithQueryParams(t *testing.T) {
 	cfg := buildStubConfig()
 	builder := RequestBuilder{cfg: cfg}
 
@@ -30,7 +30,7 @@ func TestRequestBuilder_BuildUriWithQueryParams(t *testing.T) {
 	assert.Nil(t, err)
 }
 
-func TestRequestBuilder_BuildHeaders(t *testing.T) {
+func Test_HTTP_RequestBuilder_BuildHeaders(t *testing.T) {
 	cfg := buildStubConfig()
 	builder := RequestBuilder{cfg: cfg}
 
@@ -40,7 +40,7 @@ func TestRequestBuilder_BuildHeaders(t *testing.T) {
 	assert.Equal(t, "Bearer "+cfg.AccessToken, headers.Get("Authorization"))
 }
 
-func TestRequestBuilder_BuildBody(t *testing.T) {
+func Test_HTTP_RequestBuilder_BuildBody(t *testing.T) {
 	cfg := buildStubConfig()
 	builder := RequestBuilder{cfg: cfg}
 
@@ -52,7 +52,7 @@ func TestRequestBuilder_BuildBody(t *testing.T) {
 	assert.NotEmpty(t, body)
 }
 
-func TestTransport_Request(t *testing.T) {
+func Test_HTTP_Transport_Request(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
