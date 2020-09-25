@@ -5,6 +5,8 @@ type CampaignsResource struct {
 }
 
 type CampaignsListFilter struct {
+	Limit  int
+	Offset int
 }
 
 func (f *CampaignsListFilter) Build() map[string]interface{} {
@@ -16,19 +18,22 @@ func (f *CampaignsListFilter) Build() map[string]interface{} {
  * @see https://target.my.com/doc/api/ru/resource/Campaigns
  * @return CampaignsCollection
  */
-func (sr *StatisticsResource) GetList(filter *CampaignsListFilter) (*Response, error) {
-	return sr.get("api/v2/campaigns.json", filter.Build())
+func (cr *CampaignsResource) GetList(filter *CampaignsListFilter) (*Response, error) {
+	if filter == nil {
+		filter = &CampaignsListFilter{}
+	}
+	return cr.get("api/v2/campaigns.json", filter.Build())
 }
 
 type CampaignsCollection struct {
-	Count  int64              `json:"count"`
-	Offset int64              `json:"offset"`
+	Count  int                `json:"count"`
+	Offset int                `json:"offset"`
 	Items  []*CampaignsObject `json:"items"`
 }
 
 type CampaignsObject struct {
-	Id          int64  `json:"id"`
-	PackageId   int64  `json:"package_id"`
+	Id          int    `json:"id"`
+	PackageId   int    `json:"package_id"`
 	Name        string `json:"name"`
 	LastUpdated string `json:"last_updated"`
 }

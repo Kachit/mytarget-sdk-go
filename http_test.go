@@ -37,7 +37,7 @@ func TestRequestBuilder_BuildHeaders(t *testing.T) {
 	headers := builder.buildHeaders()
 	assert.NotEmpty(t, headers)
 	assert.Equal(t, "application/json", headers.Get("Content-Type"))
-	assert.Equal(t, "Bearer "+cfg.AccessToken, headers.Get("Authentication"))
+	assert.Equal(t, "Bearer "+cfg.AccessToken, headers.Get("Authorization"))
 }
 
 func TestRequestBuilder_BuildBody(t *testing.T) {

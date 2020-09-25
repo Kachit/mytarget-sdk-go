@@ -34,7 +34,7 @@ func (rb *RequestBuilder) buildUri(path string, query map[string]interface{}) (u
 func (rb *RequestBuilder) buildHeaders() http.Header {
 	headers := http.Header{}
 	headers.Set("Content-Type", "application/json")
-	headers.Set("Authentication", "Bearer "+rb.cfg.AccessToken)
+	headers.Set("Authorization", "Bearer "+rb.cfg.AccessToken)
 	return headers
 }
 
@@ -55,8 +55,12 @@ type Response struct {
 	raw *http.Response
 }
 
-func (r *Response) isSuccess() bool {
+func (r *Response) IsSuccess() bool {
 	return r.raw.StatusCode <= 201
+}
+
+func (r *Response) GetRaw() *http.Response {
+	return r.raw
 }
 
 func (r *Response) Unmarshal(v interface{}) error {

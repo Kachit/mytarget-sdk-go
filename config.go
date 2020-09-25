@@ -7,6 +7,6 @@ type Config struct {
 	AccessToken string
 }
 
-func NewConfig() *Config {
-	return &Config{Uri: URI_PROD}
+func NewConfig(accessToken string) *Config {
+	return &Config{Uri: URI_PROD, AccessToken: accessToken}
 }

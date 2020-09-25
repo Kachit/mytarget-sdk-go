@@ -58,14 +58,14 @@ type StatisticsPartnersPadsResult struct {
 }
 
 type StatisticsPartnersPadsTotal struct {
-	Shows            int64         `json:"shows"`
-	Clicks           int64         `json:"clicks"`
-	Goals            int64         `json:"goals"`
-	Custom           int64         `json:"custom"`
-	Requests         int64         `json:"requests"`
-	Responses        int64         `json:"responses"`
-	RequestedBanners int64         `json:"requested_banners"`
-	NoShows          int64         `json:"noshows"`
+	Shows            int           `json:"shows"`
+	Clicks           int           `json:"clicks"`
+	Goals            int           `json:"goals"`
+	Custom           int           `json:"custom"`
+	Requests         int           `json:"requests"`
+	Responses        int           `json:"responses"`
+	RequestedBanners int           `json:"requested_banners"`
+	NoShows          int           `json:"noshows"`
 	Amount           CustomFloat64 `json:"amount"`
 	Cpm              CustomFloat64 `json:"cpm"`
 	Ctr              float64       `json:"ctr"`
@@ -73,21 +73,21 @@ type StatisticsPartnersPadsTotal struct {
 }
 
 type StatisticsPartnersPadsItem struct {
-	Id    int64                        `json:"id"`
+	Id    int                          `json:"id"`
 	Rows  []*StatisticsPartnersPadsRow `json:"rows"`
 	Total *StatisticsPartnersPadsTotal `json:"total"`
 }
 
 type StatisticsPartnersPadsRow struct {
 	Date             string        `json:"date"`
-	Shows            int64         `json:"shows"`
-	Clicks           int64         `json:"clicks"`
-	Goals            int64         `json:"goals"`
-	Custom           int64         `json:"custom"`
-	Requests         int64         `json:"requests"`
-	Responses        int64         `json:"responses"`
-	RequestedBanners int64         `json:"requested_banners"`
-	NoShows          int64         `json:"noshows"`
+	Shows            int           `json:"shows"`
+	Clicks           int           `json:"clicks"`
+	Goals            int           `json:"goals"`
+	Custom           int           `json:"custom"`
+	Requests         int           `json:"requests"`
+	Responses        int           `json:"responses"`
+	RequestedBanners int           `json:"requested_banners"`
+	NoShows          int           `json:"noshows"`
 	Amount           CustomFloat64 `json:"amount"`
 	Cpm              CustomFloat64 `json:"cpm"`
 	Ctr              float64       `json:"ctr"`

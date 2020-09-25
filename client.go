@@ -11,6 +11,11 @@ func (c *Client) Statistics() *StatisticsResource {
 	return &StatisticsResource{ResourceAbstract: resource}
 }
 
+func (c *Client) Campaigns() *CampaignsResource {
+	resource := newResourceAbstract(c.transport)
+	return &CampaignsResource{ResourceAbstract: resource}
+}
+
 func NewClient(config *Config, cl *http.Client) *Client {
 	if cl == nil {
 		cl = &http.Client{}

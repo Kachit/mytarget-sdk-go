@@ -1,0 +1,24 @@
+{
+  "count": 3,
+  "offset": 0,
+  "items": [
+    {
+      "package_id": 83,
+      "last_updated": "2017-07-04 17:36:16",
+      "id": 6617841,
+      "name": "New campaign 2016-07-15 17:53"
+    },
+    {
+      "package_id": 83,
+      "last_updated": "2017-07-04 17:36:16",
+      "id": 6711647,
+      "name": "New campaign 2016-08-16 19:49"
+    },
+    {
+      "package_id": 83,
+      "last_updated": "2017-07-04 17:36:16",
+      "id": 6711665,
+      "name": "New campaign 2016-08-16 19:51"
+    }
+  ]
+}
