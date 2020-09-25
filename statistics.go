@@ -1,8 +1,6 @@
 package mytarget_sdk
 
 import (
-	"encoding/json"
-	"errors"
 	"time"
 )
 
@@ -39,14 +37,16 @@ type StatisticsResource struct {
 }
 
 /**
- * https://target.my.com/help/partners/reporting_api_statistics/ru#partners
+ * @see https://target.my.com/help/partners/reporting_api_statistics/ru#partners
+ * @return StatisticsPartnersPadsResult
  */
 func (sr *StatisticsResource) GetPartnersPadsList(filter *StatisticsPartnersPadsFilter) (*Response, error) {
 	return sr.get("api/v2/statistics/partner/pads/day.json", filter.Build())
 }
 
 /**
- * https://target.my.com/help/partners/reporting_api_statistics/ru#apps
+ * @see https://target.my.com/help/partners/reporting_api_statistics/ru#apps
+ * @return StatisticsPartnersPadsResult
  */
 func (sr *StatisticsResource) GetPadsWithSitesList(filter *StatisticsPadsWithSitesFilter) (*Response, error) {
 	return sr.get("api/v2/statistics/pad_with_sites/day.json", filter.Build())
@@ -92,23 +92,4 @@ type StatisticsPartnersPadsRow struct {
 	Cpm              CustomFloat64 `json:"cpm"`
 	Ctr              float64       `json:"ctr"`
 	FillRate         float64       `json:"fill_rate"`
-}
-
-type CustomFloat64 struct {
-	Float64 float64
-}
-
-func (cf *CustomFloat64) UnmarshalJSON(data []byte) error {
-	if data[0] == 34 {
-		err := json.Unmarshal(data[1:len(data)-1], &cf.Float64)
-		if err != nil {
-			return errors.New("CustomFloat64: UnmarshalJSON: " + err.Error())
-		}
-	} else {
-		err := json.Unmarshal(data, &cf.Float64)
-		if err != nil {
-			return errors.New("CustomFloat64: UnmarshalJSON: " + err.Error())
-		}
-	}
-	return nil
 }
