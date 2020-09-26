@@ -61,9 +61,53 @@ func Test_HTTP_Transport_Request(t *testing.T) {
 
 	body, _ := loadStubResponseData("stubs/campaigns/list.success.json")
 
-	httpmock.RegisterResponder("GET", cfg.Uri+"/foo",
-		httpmock.NewBytesResponder(http.StatusOK, body))
+	httpmock.RegisterResponder("GET", cfg.Uri+"/foo", httpmock.NewBytesResponder(http.StatusOK, body))
 
 	resp, _ := transport.request("GET", "foo", nil, nil)
+	assert.NotEmpty(t, resp)
+}
+
+func Test_HTTP_Transport_RequestGET(t *testing.T) {
+	httpmock.Activate()
+	defer httpmock.DeactivateAndReset()
+
+	cfg := buildStubConfig()
+	transport := newHttpTransport(cfg, nil)
+
+	body, _ := loadStubResponseData("stubs/campaigns/list.success.json")
+
+	httpmock.RegisterResponder("GET", cfg.Uri+"/foo", httpmock.NewBytesResponder(http.StatusOK, body))
+
+	resp, _ := transport.get("foo", nil)
+	assert.NotEmpty(t, resp)
+}
+
+func Test_HTTP_Transport_RequestPOST(t *testing.T) {
+	httpmock.Activate()
+	defer httpmock.DeactivateAndReset()
+
+	cfg := buildStubConfig()
+	transport := newHttpTransport(cfg, nil)
+
+	body, _ := loadStubResponseData("stubs/campaigns/list.success.json")
+
+	httpmock.RegisterResponder("POST", cfg.Uri+"/foo", httpmock.NewBytesResponder(http.StatusOK, body))
+
+	resp, _ := transport.post("foo", nil, nil)
+	assert.NotEmpty(t, resp)
+}
+
+func Test_HTTP_Transport_RequestPUT(t *testing.T) {
+	httpmock.Activate()
+	defer httpmock.DeactivateAndReset()
+
+	cfg := buildStubConfig()
+	transport := newHttpTransport(cfg, nil)
+
+	body, _ := loadStubResponseData("stubs/campaigns/list.success.json")
+
+	httpmock.RegisterResponder("PUT", cfg.Uri+"/foo", httpmock.NewBytesResponder(http.StatusOK, body))
+
+	resp, _ := transport.put("foo", nil, nil)
 	assert.NotEmpty(t, resp)
 }

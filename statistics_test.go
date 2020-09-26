@@ -67,6 +67,14 @@ func Test_Statistics_StatisticsPadsWithSitesFilter_Build(t *testing.T) {
 	assert.Equal(t, expected, result)
 }
 
+func Test_Statistics_StatisticsPadsWithSitesFilter_IsValidSuccess(t *testing.T) {
+	filter := StatisticsPadsWithSitesFilter{}
+	filter.DateFrom = time.Date(2020, time.Month(1), 10, 0, 0, 0, 0, time.UTC)
+	filter.DateTo = time.Date(2020, time.Month(1), 20, 0, 0, 0, 0, time.UTC)
+	filter.Pads = []int{1, 2, 3}
+	assert.Nil(t, filter.IsValid())
+}
+
 func Test_Statistics_StatisticsPadsWithSitesFilter_IsValidFailedDateFrom(t *testing.T) {
 	filter := StatisticsPadsWithSitesFilter{}
 	filter.DateTo = time.Date(2020, time.Month(1), 20, 0, 0, 0, 0, time.UTC)

@@ -1,6 +1,7 @@
 package mytarget_sdk
 
 import (
+	"bytes"
 	"io/ioutil"
 	"net/http"
 	"strings"
@@ -22,7 +23,13 @@ func loadStubResponseData(path string) ([]byte, error) {
 	return ioutil.ReadFile(path)
 }
 
-func buildStubResponse(json string) *http.Response {
+func buildStubResponseFromString(statusCode int, json string) *http.Response {
 	body := ioutil.NopCloser(strings.NewReader(json))
-	return &http.Response{Body: body}
+	return &http.Response{Body: body, StatusCode: statusCode}
+}
+
+func buildStubResponseFromData(statusCode int, path string) *http.Response {
+	data, _ := loadStubResponseData(path)
+	body := ioutil.NopCloser(bytes.NewReader(data))
+	return &http.Response{Body: body, StatusCode: statusCode}
 }

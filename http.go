@@ -56,7 +56,7 @@ type Response struct {
 }
 
 func (r *Response) IsSuccess() bool {
-	return r.raw.StatusCode <= 201
+	return r.raw.StatusCode < http.StatusMultipleChoices
 }
 
 func (r *Response) GetRaw() *http.Response {
@@ -107,10 +107,6 @@ func (t *Transport) get(path string, query map[string]interface{}) (resp *http.R
 
 func (t *Transport) delete(path string, query map[string]interface{}) (resp *http.Response, err error) {
 	return t.request("DELETE", path, query, nil)
-}
-
-func (t *Transport) patch(path string, body map[string]interface{}, query map[string]interface{}) (resp *http.Response, err error) {
-	return t.request("PATCH", path, query, body)
 }
 
 func (t *Transport) put(path string, body map[string]interface{}, query map[string]interface{}) (resp *http.Response, err error) {
