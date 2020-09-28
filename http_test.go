@@ -111,3 +111,13 @@ func Test_HTTP_Transport_RequestPUT(t *testing.T) {
 	resp, _ := transport.put("foo", nil, nil)
 	assert.NotEmpty(t, resp)
 }
+
+func Test_HTTP_Response_IsSuccessTrue(t *testing.T) {
+	response := &Response{raw: buildStubResponseFromFile(http.StatusOK, "stubs/campaigns/list.success.json")}
+	assert.True(t, response.IsSuccess())
+}
+
+func Test_HTTP_Response_IsSuccessFalse(t *testing.T) {
+	response := &Response{raw: buildStubResponseFromFile(http.StatusBadRequest, "stubs/campaigns/list.success.json")}
+	assert.False(t, response.IsSuccess())
+}
