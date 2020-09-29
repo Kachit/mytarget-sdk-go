@@ -52,3 +52,21 @@ func Test_Marketing_Statistics_StatsFilter_IsValidFailedDateTo(t *testing.T) {
 	assert.Error(t, err)
 	assert.Equal(t, "StatsFilter@IsValid: DateTo is required", err.Error())
 }
+
+func Test_Marketing_Statistics_StatisticsResource_GetStatsInvalidDateFrom(t *testing.T) {
+	filter := &StatsFilter{}
+	resource := StatisticsResource{}
+	filter.DateTo = time.Date(2020, time.Month(1), 20, 0, 0, 0, 0, time.UTC)
+	_, err := resource.GetStats(StatsResourceCampaigns, StatsDimensionDay, filter)
+	assert.Error(t, err)
+	assert.Equal(t, "StatsFilter@IsValid: DateFrom is required", err.Error())
+}
+
+func Test_Marketing_Statistics_StatisticsResource_GetStatsInvalidDateTo(t *testing.T) {
+	filter := &StatsFilter{}
+	resource := StatisticsResource{}
+	filter.DateFrom = time.Date(2020, time.Month(1), 20, 0, 0, 0, 0, time.UTC)
+	_, err := resource.GetStats(StatsResourceCampaigns, StatsDimensionDay, filter)
+	assert.Error(t, err)
+	assert.Equal(t, "StatsFilter@IsValid: DateTo is required", err.Error())
+}

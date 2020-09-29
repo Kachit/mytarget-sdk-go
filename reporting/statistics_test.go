@@ -102,22 +102,22 @@ func Test_Reporting_Statistics_StatisticsPadsWithSitesFilter_IsValidFailedIds(t 
 	assert.Equal(t, "StatisticsPadsWithSitesFilter@IsValid: Pads is required", err.Error())
 }
 
-//func Test_Reporting_Statistics_StatisticsResource_GetPadsWithSitesListInvalidDateFrom(t *testing.T) {
-//	filter := &StatisticsPadsWithSitesFilter{}
-//	client := mytarget_sdk.BuildStubClient()
-//	filter.DateTo = time.Date(2020, time.Month(1), 20, 0, 0, 0, 0, time.UTC)
-//	filter.Pads = []int{1, 2, 3}
-//	_, err := client.ReportsStatistics().GetPadsWithSitesList(filter)
-//	assert.Error(t, err)
-//	assert.Equal(t, "StatisticsPadsWithSitesFilter@IsValid: DateFrom is required", err.Error())
-//}
-//
-//func Test_Reporting_Statistics_StatisticsResource_GetPartnersPadsListInvalidDateFrom(t *testing.T) {
-//	filter := &StatisticsPartnersPadsFilter{}
-//	client := mytarget_sdk.BuildStubClient()
-//	filter.DateTo = time.Date(2020, time.Month(1), 20, 0, 0, 0, 0, time.UTC)
-//	filter.Ids = []int{1, 2, 3}
-//	_, err := client.ReportsStatistics().GetPartnersPadsList(filter)
-//	assert.Error(t, err)
-//	assert.Equal(t, "StatisticsPartnersPadsFilter@IsValid: DateFrom is required", err.Error())
-//}
+func Test_Reporting_Statistics_StatisticsResource_GetPadsWithSitesListInvalidDateFrom(t *testing.T) {
+	filter := &StatisticsPadsWithSitesFilter{}
+	resource := StatisticsResource{}
+	filter.DateTo = time.Date(2020, time.Month(1), 20, 0, 0, 0, 0, time.UTC)
+	filter.Pads = []int{1, 2, 3}
+	_, err := resource.GetPadsWithSitesList(filter)
+	assert.Error(t, err)
+	assert.Equal(t, "StatisticsPadsWithSitesFilter@IsValid: DateFrom is required", err.Error())
+}
+
+func Test_Reporting_Statistics_StatisticsResource_GetPartnersPadsListInvalidDateFrom(t *testing.T) {
+	filter := &StatisticsPartnersPadsFilter{}
+	resource := StatisticsResource{}
+	filter.DateTo = time.Date(2020, time.Month(1), 20, 0, 0, 0, 0, time.UTC)
+	filter.Ids = []int{1, 2, 3}
+	_, err := resource.GetPartnersPadsList(filter)
+	assert.Error(t, err)
+	assert.Equal(t, "StatisticsPartnersPadsFilter@IsValid: DateFrom is required", err.Error())
+}
