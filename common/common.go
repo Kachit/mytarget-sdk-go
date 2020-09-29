@@ -1,4 +1,4 @@
-package mytarget_sdk
+package common
 
 import (
 	"encoding/json"

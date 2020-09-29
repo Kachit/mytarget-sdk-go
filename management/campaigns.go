@@ -1,7 +1,12 @@
-package mytarget_sdk
+package management
+
+import (
+	"github.com/kachit/mytarget-sdk-go/http"
+	"github.com/kachit/mytarget-sdk-go/resources"
+)
 
 type CampaignsResource struct {
-	*ResourceAbstract
+	*resources.ResourceAbstract
 }
 
 type CampaignsListFilter struct {
@@ -21,10 +26,10 @@ func (f *CampaignsListFilter) Build() map[string]interface{} {
 }
 
 /**
- * @see https://target.my.com/doc/api/ru/resource/Campaigns
- * @return CampaignsCollection
+* @see https://target.my.com/doc/api/ru/resource/Campaigns
+* @return CampaignsCollection
  */
-func (cr *CampaignsResource) GetList(filter *CampaignsListFilter) (*Response, error) {
+func (cr *CampaignsResource) GetList(filter *CampaignsListFilter) (*http.Response, error) {
 	if filter == nil {
 		filter = &CampaignsListFilter{}
 	}

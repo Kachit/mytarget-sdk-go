@@ -35,3 +35,7 @@ func (r *Response) ReadBody() ([]byte, error) {
 	defer r.raw.Body.Close()
 	return ioutil.ReadAll(r.raw.Body)
 }
+
+func NewResponse(raw *http.Response) *Response {
+	return &Response{raw: raw}
+}

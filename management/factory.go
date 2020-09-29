@@ -1,4 +1,4 @@
-package reporting
+package management
 
 import (
 	"github.com/kachit/mytarget-sdk-go/http"
@@ -9,7 +9,7 @@ type Factory struct {
 	Transport *http.Transport
 }
 
-func (f *Factory) Statistics() *StatisticsResource {
+func (f *Factory) Campaigns() *CampaignsResource {
 	resource := resources.NewResourceAbstract(f.Transport)
-	return &StatisticsResource{ResourceAbstract: resource}
+	return &CampaignsResource{ResourceAbstract: resource}
 }

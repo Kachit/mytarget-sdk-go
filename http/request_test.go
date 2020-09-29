@@ -1,14 +1,18 @@
-package mytarget_sdk
+package http
 
 import (
 	"github.com/jarcoal/httpmock"
-	"github.com/stretchr/testify/assert"
 	"net/http"
+
+	//"github.com/jarcoal/httpmock"
+	"github.com/kachit/mytarget-sdk-go/stubs"
+	"github.com/stretchr/testify/assert"
+	//"net/http"
 	"testing"
 )
 
 func Test_HTTP_RequestBuilder_BuildUriWithoutQueryParams(t *testing.T) {
-	cfg := BuildStubConfig()
+	cfg := stubs.BuildStubConfig()
 	builder := RequestBuilder{cfg: cfg}
 	uri, err := builder.buildUri("qwerty", nil)
 	assert.NotEmpty(t, uri)
@@ -17,7 +21,7 @@ func Test_HTTP_RequestBuilder_BuildUriWithoutQueryParams(t *testing.T) {
 }
 
 func Test_HTTP_RequestBuilder_BuildUriWithQueryParams(t *testing.T) {
-	cfg := BuildStubConfig()
+	cfg := stubs.BuildStubConfig()
 	builder := RequestBuilder{cfg: cfg}
 
 	data := make(map[string]interface{})
@@ -31,7 +35,7 @@ func Test_HTTP_RequestBuilder_BuildUriWithQueryParams(t *testing.T) {
 }
 
 func Test_HTTP_RequestBuilder_BuildHeaders(t *testing.T) {
-	cfg := BuildStubConfig()
+	cfg := stubs.BuildStubConfig()
 	builder := RequestBuilder{cfg: cfg}
 
 	headers := builder.buildHeaders()
@@ -41,7 +45,7 @@ func Test_HTTP_RequestBuilder_BuildHeaders(t *testing.T) {
 }
 
 func Test_HTTP_RequestBuilder_BuildBody(t *testing.T) {
-	cfg := BuildStubConfig()
+	cfg := stubs.BuildStubConfig()
 	builder := RequestBuilder{cfg: cfg}
 
 	data := make(map[string]interface{})
@@ -56,14 +60,14 @@ func Test_HTTP_Transport_Request(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
-	cfg := BuildStubConfig()
-	transport := newHttpTransport(cfg, nil)
+	cfg := stubs.BuildStubConfig()
+	transport := NewHttpTransport(cfg, nil)
 
-	body, _ := LoadStubResponseData("stubs/campaigns/list.success.json")
+	body, _ := stubs.LoadStubResponseData("stubs/data/management/campaigns/list.success.json")
 
 	httpmock.RegisterResponder("GET", cfg.Uri+"/foo", httpmock.NewBytesResponder(http.StatusOK, body))
 
-	resp, _ := transport.request("GET", "foo", nil, nil)
+	resp, _ := transport.Request("GET", "foo", nil, nil)
 	assert.NotEmpty(t, resp)
 }
 
@@ -71,14 +75,14 @@ func Test_HTTP_Transport_RequestGET(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
-	cfg := BuildStubConfig()
-	transport := newHttpTransport(cfg, nil)
+	cfg := stubs.BuildStubConfig()
+	transport := NewHttpTransport(cfg, nil)
 
-	body, _ := LoadStubResponseData("stubs/campaigns/list.success.json")
+	body, _ := stubs.LoadStubResponseData("stubs/data/management/campaigns/list.success.json")
 
 	httpmock.RegisterResponder("GET", cfg.Uri+"/foo", httpmock.NewBytesResponder(http.StatusOK, body))
 
-	resp, _ := transport.get("foo", nil)
+	resp, _ := transport.Get("foo", nil)
 	assert.NotEmpty(t, resp)
 }
 
@@ -86,14 +90,14 @@ func Test_HTTP_Transport_RequestPOST(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
-	cfg := BuildStubConfig()
-	transport := newHttpTransport(cfg, nil)
+	cfg := stubs.BuildStubConfig()
+	transport := NewHttpTransport(cfg, nil)
 
-	body, _ := LoadStubResponseData("stubs/campaigns/list.success.json")
+	body, _ := stubs.LoadStubResponseData("stubs/data/management/campaigns/list.success.json")
 
 	httpmock.RegisterResponder("POST", cfg.Uri+"/foo", httpmock.NewBytesResponder(http.StatusOK, body))
 
-	resp, _ := transport.post("foo", nil, nil)
+	resp, _ := transport.Post("foo", nil, nil)
 	assert.NotEmpty(t, resp)
 }
 
@@ -101,23 +105,13 @@ func Test_HTTP_Transport_RequestPUT(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
-	cfg := BuildStubConfig()
-	transport := newHttpTransport(cfg, nil)
+	cfg := stubs.BuildStubConfig()
+	transport := NewHttpTransport(cfg, nil)
 
-	body, _ := LoadStubResponseData("stubs/campaigns/list.success.json")
+	body, _ := stubs.LoadStubResponseData("stubs/data/management/campaigns/list.success.json")
 
 	httpmock.RegisterResponder("PUT", cfg.Uri+"/foo", httpmock.NewBytesResponder(http.StatusOK, body))
 
-	resp, _ := transport.put("foo", nil, nil)
+	resp, _ := transport.Put("foo", nil, nil)
 	assert.NotEmpty(t, resp)
-}
-
-func Test_HTTP_Response_IsSuccessTrue(t *testing.T) {
-	response := &Response{raw: BuildStubResponseFromFile(http.StatusOK, "stubs/campaigns/list.success.json")}
-	assert.True(t, response.IsSuccess())
-}
-
-func Test_HTTP_Response_IsSuccessFalse(t *testing.T) {
-	response := &Response{raw: BuildStubResponseFromFile(http.StatusBadRequest, "stubs/campaigns/list.success.json")}
-	assert.False(t, response.IsSuccess())
 }

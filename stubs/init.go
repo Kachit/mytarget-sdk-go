@@ -1,22 +1,19 @@
-package mytarget_sdk
+package stubs
 
 import (
 	"bytes"
+	"github.com/kachit/mytarget-sdk-go/config"
 	"io/ioutil"
 	"net/http"
 	"strings"
 )
 
-func BuildStubConfig() *Config {
-	cfg := &Config{
+func BuildStubConfig() *config.Config {
+	cfg := &config.Config{
 		Uri:         "https://github.com",
 		AccessToken: "qwerty",
 	}
 	return cfg
-}
-
-func BuildStubClient() *Client {
-	return NewClient(BuildStubConfig(), nil)
 }
 
 func LoadStubResponseData(path string) ([]byte, error) {

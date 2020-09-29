@@ -1,4 +1,4 @@
-package mytarget_sdk
+package common
 
 import (
 	"github.com/stretchr/testify/assert"

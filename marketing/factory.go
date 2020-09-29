@@ -1,4 +1,4 @@
-package reporting
+package marketing
 
 import (
 	"github.com/kachit/mytarget-sdk-go/http"

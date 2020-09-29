@@ -1,27 +1,43 @@
 package mytarget_sdk
 
 import (
+	"github.com/kachit/mytarget-sdk-go/config"
+	mytarget_http "github.com/kachit/mytarget-sdk-go/http"
+	"github.com/kachit/mytarget-sdk-go/management"
+	"github.com/kachit/mytarget-sdk-go/marketing"
+	"github.com/kachit/mytarget-sdk-go/reporting"
 	"net/http"
 )
 
 type Client struct {
-	transport *Transport
+	transport *mytarget_http.Transport
 }
 
-//func (c *Client) Statistics() *reporting.StatisticsResource {
-//	resource := NewResourceAbstract(c.transport)
-//	return &reporting.StatisticsResource{ResourceAbstract: resource}
-//}
-
-func (c *Client) Campaigns() *CampaignsResource {
-	resource := NewResourceAbstract(c.transport)
-	return &CampaignsResource{ResourceAbstract: resource}
+func (c *Client) Reporting() *reporting.Factory {
+	return &reporting.Factory{Transport: c.transport}
 }
 
-func NewClient(config *Config, cl *http.Client) *Client {
+func (c *Client) Management() *management.Factory {
+	return &management.Factory{Transport: c.transport}
+}
+
+func (c *Client) Marketing() *marketing.Factory {
+	return &marketing.Factory{Transport: c.transport}
+}
+
+func NewClientFromConfig(config *config.Config, cl *http.Client) *Client {
 	if cl == nil {
 		cl = &http.Client{}
 	}
-	transport := newHttpTransport(config, cl)
+	transport := mytarget_http.NewHttpTransport(config, cl)
+	return &Client{transport}
+}
+
+func NewClientFromCredentials(accessToken string, cl *http.Client) *Client {
+	cfg := config.NewConfig(accessToken)
+	if cl == nil {
+		cl = &http.Client{}
+	}
+	transport := mytarget_http.NewHttpTransport(cfg, cl)
 	return &Client{transport}
 }
