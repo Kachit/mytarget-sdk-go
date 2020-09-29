@@ -56,6 +56,12 @@ func Test_HTTP_RequestBuilder_BuildBody(t *testing.T) {
 	assert.NotEmpty(t, body)
 }
 
+func Test_HTTP_NewHttpTransport(t *testing.T) {
+	cfg := stubs.BuildStubConfig()
+	transport := NewHttpTransport(cfg, nil)
+	assert.NotEmpty(t, transport)
+}
+
 func Test_HTTP_Transport_Request(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()

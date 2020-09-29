@@ -5,14 +5,14 @@ import (
 	"testing"
 )
 
-func Test_Campaigns_CampaignsListFilter_BuildByDefault(t *testing.T) {
+func Test_Management_Campaigns_CampaignsListFilter_BuildByDefault(t *testing.T) {
 	filter := CampaignsListFilter{}
 	expected := make(map[string]interface{})
 	result := filter.Build()
 	assert.Equal(t, expected, result)
 }
 
-func Test_Campaigns_CampaignsListFilter_BuildByFilled(t *testing.T) {
+func Test_Management_Campaigns_CampaignsListFilter_BuildByFilled(t *testing.T) {
 	filter := CampaignsListFilter{}
 	filter.Limit = 20
 	filter.Offset = 10

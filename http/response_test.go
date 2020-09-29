@@ -16,3 +16,9 @@ func Test_HTTP_Response_IsSuccessFalse(t *testing.T) {
 	response := &Response{raw: stubs.BuildStubResponseFromFile(http.StatusBadRequest, "stubs/data/management/campaigns/list.success.json")}
 	assert.False(t, response.IsSuccess())
 }
+
+func Test_HTTP_NewResponse(t *testing.T) {
+	rsp := stubs.BuildStubResponseFromFile(http.StatusBadRequest, "stubs/data/management/campaigns/list.success.json")
+	response := NewResponse(rsp)
+	assert.NotEmpty(t, response)
+}
