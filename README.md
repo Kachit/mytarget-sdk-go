@@ -9,6 +9,8 @@ MyTarget API Client for Go
 ## API documentation
 https://target.my.com/help/partners/management_api/ru
 
+https://target.my.com/adv/api-marketing/doc/stat-v2
+
 https://target.my.com/help/partners/reporting_api_statistics/ru
 
 ## Download

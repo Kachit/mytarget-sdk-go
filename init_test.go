@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func buildStubConfig() *Config {
+func BuildStubConfig() *Config {
 	cfg := &Config{
 		Uri:         "https://github.com",
 		AccessToken: "qwerty",
@@ -15,21 +15,21 @@ func buildStubConfig() *Config {
 	return cfg
 }
 
-func buildStubClient() *Client {
-	return NewClient(buildStubConfig(), nil)
+func BuildStubClient() *Client {
+	return NewClient(BuildStubConfig(), nil)
 }
 
-func loadStubResponseData(path string) ([]byte, error) {
+func LoadStubResponseData(path string) ([]byte, error) {
 	return ioutil.ReadFile(path)
 }
 
-func buildStubResponseFromString(statusCode int, json string) *http.Response {
+func BuildStubResponseFromString(statusCode int, json string) *http.Response {
 	body := ioutil.NopCloser(strings.NewReader(json))
 	return &http.Response{Body: body, StatusCode: statusCode}
 }
 
-func buildStubResponseFromFile(statusCode int, path string) *http.Response {
-	data, _ := loadStubResponseData(path)
+func BuildStubResponseFromFile(statusCode int, path string) *http.Response {
+	data, _ := LoadStubResponseData(path)
 	body := ioutil.NopCloser(bytes.NewReader(data))
 	return &http.Response{Body: body, StatusCode: statusCode}
 }

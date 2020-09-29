@@ -28,7 +28,7 @@ func (cr *CampaignsResource) GetList(filter *CampaignsListFilter) (*Response, er
 	if filter == nil {
 		filter = &CampaignsListFilter{}
 	}
-	return cr.get("api/v2/campaigns.json", filter.Build())
+	return cr.Get("api/v2/campaigns.json", filter.Build())
 }
 
 type CampaignsCollection struct {

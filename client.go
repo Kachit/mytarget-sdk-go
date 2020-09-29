@@ -1,18 +1,20 @@
 package mytarget_sdk
 
-import "net/http"
+import (
+	"net/http"
+)
 
 type Client struct {
 	transport *Transport
 }
 
-func (c *Client) Statistics() *StatisticsResource {
-	resource := newResourceAbstract(c.transport)
-	return &StatisticsResource{ResourceAbstract: resource}
-}
+//func (c *Client) Statistics() *reporting.StatisticsResource {
+//	resource := NewResourceAbstract(c.transport)
+//	return &reporting.StatisticsResource{ResourceAbstract: resource}
+//}
 
 func (c *Client) Campaigns() *CampaignsResource {
-	resource := newResourceAbstract(c.transport)
+	resource := NewResourceAbstract(c.transport)
 	return &CampaignsResource{ResourceAbstract: resource}
 }
 

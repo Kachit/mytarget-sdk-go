@@ -1,7 +1,8 @@
-package mytarget_sdk
+package reporting
 
 import (
 	"fmt"
+	"github.com/kachit/mytarget-sdk-go"
 	"time"
 )
 
@@ -26,7 +27,7 @@ func (f *StatisticsPartnersPadsFilter) IsValid() error {
 
 func (f *StatisticsPartnersPadsFilter) Build() map[string]interface{} {
 	params := make(map[string]interface{})
-	params["id"] = arrayToString(f.Ids, ",")
+	params["id"] = mytarget_sdk.ArrayToString(f.Ids, ",")
 	params["date_from"] = f.DateFrom.Format("2006-01-02")
 	params["date_to"] = f.DateTo.Format("2006-01-02")
 	return params
@@ -53,38 +54,38 @@ func (f *StatisticsPadsWithSitesFilter) IsValid() error {
 
 func (f *StatisticsPadsWithSitesFilter) Build() map[string]interface{} {
 	params := make(map[string]interface{})
-	params["pads"] = arrayToString(f.Pads, ",")
+	params["pads"] = mytarget_sdk.ArrayToString(f.Pads, ",")
 	params["date_from"] = f.DateFrom.Format("2006-01-02")
 	params["date_to"] = f.DateTo.Format("2006-01-02")
 	return params
 }
 
 type StatisticsResource struct {
-	*ResourceAbstract
+	*mytarget_sdk.ResourceAbstract
 }
 
 /**
  * @see https://target.my.com/help/partners/reporting_api_statistics/ru#partners
  * @return StatisticsPartnersPadsResult
  */
-func (sr *StatisticsResource) GetPartnersPadsList(filter *StatisticsPartnersPadsFilter) (*Response, error) {
+func (sr *StatisticsResource) GetPartnersPadsList(filter *StatisticsPartnersPadsFilter) (*mytarget_sdk.Response, error) {
 	err := filter.IsValid()
 	if err != nil {
 		return nil, err
 	}
-	return sr.get("api/v2/statistics/partner/pads/day.json", filter.Build())
+	return sr.Get("api/v2/statistics/partner/pads/day.json", filter.Build())
 }
 
 /**
  * @see https://target.my.com/help/partners/reporting_api_statistics/ru#apps
  * @return StatisticsPartnersPadsResult
  */
-func (sr *StatisticsResource) GetPadsWithSitesList(filter *StatisticsPadsWithSitesFilter) (*Response, error) {
+func (sr *StatisticsResource) GetPadsWithSitesList(filter *StatisticsPadsWithSitesFilter) (*mytarget_sdk.Response, error) {
 	err := filter.IsValid()
 	if err != nil {
 		return nil, err
 	}
-	return sr.get("api/v2/statistics/pad_with_sites/day.json", filter.Build())
+	return sr.Get("api/v2/statistics/pad_with_sites/day.json", filter.Build())
 }
 
 type StatisticsPartnersPadsResult struct {
@@ -93,18 +94,18 @@ type StatisticsPartnersPadsResult struct {
 }
 
 type StatisticsPartnersPadsTotal struct {
-	Shows            int           `json:"shows"`
-	Clicks           int           `json:"clicks"`
-	Goals            int           `json:"goals"`
-	Custom           int           `json:"custom"`
-	Requests         int           `json:"requests"`
-	Responses        int           `json:"responses"`
-	RequestedBanners int           `json:"requested_banners"`
-	NoShows          int           `json:"noshows"`
-	Amount           CustomFloat64 `json:"amount"`
-	Cpm              CustomFloat64 `json:"cpm"`
-	Ctr              float64       `json:"ctr"`
-	FillRate         float64       `json:"fill_rate"`
+	Shows            int                        `json:"shows"`
+	Clicks           int                        `json:"clicks"`
+	Goals            int                        `json:"goals"`
+	Custom           int                        `json:"custom"`
+	Requests         int                        `json:"requests"`
+	Responses        int                        `json:"responses"`
+	RequestedBanners int                        `json:"requested_banners"`
+	NoShows          int                        `json:"noshows"`
+	Amount           mytarget_sdk.CustomFloat64 `json:"amount"`
+	Cpm              mytarget_sdk.CustomFloat64 `json:"cpm"`
+	Ctr              float64                    `json:"ctr"`
+	FillRate         float64                    `json:"fill_rate"`
 }
 
 type StatisticsPartnersPadsItem struct {
@@ -114,17 +115,17 @@ type StatisticsPartnersPadsItem struct {
 }
 
 type StatisticsPartnersPadsRow struct {
-	Date             CustomDate    `json:"date"`
-	Shows            int           `json:"shows"`
-	Clicks           int           `json:"clicks"`
-	Goals            int           `json:"goals"`
-	Custom           int           `json:"custom"`
-	Requests         int           `json:"requests"`
-	Responses        int           `json:"responses"`
-	RequestedBanners int           `json:"requested_banners"`
-	NoShows          int           `json:"noshows"`
-	Amount           CustomFloat64 `json:"amount"`
-	Cpm              CustomFloat64 `json:"cpm"`
-	Ctr              float64       `json:"ctr"`
-	FillRate         float64       `json:"fill_rate"`
+	Date             mytarget_sdk.CustomDate    `json:"date"`
+	Shows            int                        `json:"shows"`
+	Clicks           int                        `json:"clicks"`
+	Goals            int                        `json:"goals"`
+	Custom           int                        `json:"custom"`
+	Requests         int                        `json:"requests"`
+	Responses        int                        `json:"responses"`
+	RequestedBanners int                        `json:"requested_banners"`
+	NoShows          int                        `json:"noshows"`
+	Amount           mytarget_sdk.CustomFloat64 `json:"amount"`
+	Cpm              mytarget_sdk.CustomFloat64 `json:"cpm"`
+	Ctr              float64                    `json:"ctr"`
+	FillRate         float64                    `json:"fill_rate"`
 }

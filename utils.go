@@ -5,6 +5,6 @@ import (
 	"strings"
 )
 
-func arrayToString(a []int, delimiter string) string {
+func ArrayToString(a []int, delimiter string) string {
 	return strings.Trim(strings.Replace(fmt.Sprint(a), " ", delimiter, -1), "[]")
 }

@@ -1,9 +1,10 @@
-package mytarget_sdk
+package http
 
 import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	mytarget_sdk "github.com/kachit/mytarget-sdk-go"
 	"io"
 	"net/http"
 	"net/url"
@@ -11,7 +12,7 @@ import (
 )
 
 type RequestBuilder struct {
-	cfg *Config
+	cfg *mytarget_sdk.Config
 }
 
 func (rb *RequestBuilder) buildUri(path string, query map[string]interface{}) (uri *url.URL, err error) {
@@ -71,23 +72,23 @@ func (t *Transport) request(method string, path string, query map[string]interfa
 	return t.http.Do(req)
 }
 
-func (t *Transport) get(path string, query map[string]interface{}) (resp *http.Response, err error) {
+func (t *Transport) Get(path string, query map[string]interface{}) (resp *http.Response, err error) {
 	return t.request("GET", path, query, nil)
 }
 
-func (t *Transport) delete(path string, query map[string]interface{}) (resp *http.Response, err error) {
+func (t *Transport) Delete(path string, query map[string]interface{}) (resp *http.Response, err error) {
 	return t.request("DELETE", path, query, nil)
 }
 
-func (t *Transport) put(path string, body map[string]interface{}, query map[string]interface{}) (resp *http.Response, err error) {
+func (t *Transport) Put(path string, body map[string]interface{}, query map[string]interface{}) (resp *http.Response, err error) {
 	return t.request("PUT", path, query, body)
 }
 
-func (t *Transport) post(path string, body map[string]interface{}, query map[string]interface{}) (resp *http.Response, err error) {
+func (t *Transport) Post(path string, body map[string]interface{}, query map[string]interface{}) (resp *http.Response, err error) {
 	return t.request("POST", path, query, body)
 }
 
-func newHttpTransport(config *Config, h *http.Client) *Transport {
+func NewHttpTransport(config *mytarget_sdk.Config, h *http.Client) *Transport {
 	if h == nil {
 		h = &http.Client{}
 	}
