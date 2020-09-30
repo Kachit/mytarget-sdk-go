@@ -29,11 +29,26 @@ import (
 )
 
 func yourFuncName(){ 
-    cfg := mytarget_sdk.NewConfig()
+    accessToken := "Access token"
+    client := mytarget_sdk.NewClientFromCredentials(accessToken, &http.Client{})
 
-    client := mytarget_sdk.NewClient(cfg, &http.Client{})
+    filter := &marketing.StatsFilter{}
+    filter.DateFrom = time.Date(2020, time.Month(9), 1, 0, 0, 0, 0, time.UTC)
+    filter.DateTo = time.Date(2020, time.Month(9), 2, 0, 0, 0, 0, time.UTC)
+    response, err := client.Marketing().Statistics().GetCampaignStatsDaily(filter)
 
-    fmt.Print(client)
+    if response.IsSuccess() {
+        var stats marketing.StatsCollection
+        response.Unmarshal(&stats)
+        fmt.Println(stats.Items[0].Id)
+        fmt.Println(stats.Total.Base.Clicks)
+    } else {
+        errorRes, _ := response.GetError()
+        fmt.Println(errorRes.Error.Code)
+        fmt.Println(errorRes.Error.Message)
+    }
+
+    fmt.Println(err)
 }
 
 ```
