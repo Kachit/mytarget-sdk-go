@@ -121,3 +121,18 @@ func Test_HTTP_Transport_RequestPUT(t *testing.T) {
 	resp, _ := transport.Put("foo", nil, nil)
 	assert.NotEmpty(t, resp)
 }
+
+func Test_HTTP_Transport_RequestDelete(t *testing.T) {
+	httpmock.Activate()
+	defer httpmock.DeactivateAndReset()
+
+	cfg := stubs.BuildStubConfig()
+	transport := NewHttpTransport(cfg, nil)
+
+	body, _ := stubs.LoadStubResponseData("../stubs/data/management/campaigns/list.success.json")
+
+	httpmock.RegisterResponder("DELETE", cfg.Uri+"/foo", httpmock.NewBytesResponder(http.StatusOK, body))
+
+	resp, _ := transport.Delete("foo", nil)
+	assert.NotEmpty(t, resp)
+}
