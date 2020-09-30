@@ -69,7 +69,7 @@ func Test_HTTP_Transport_Request(t *testing.T) {
 	cfg := stubs.BuildStubConfig()
 	transport := NewHttpTransport(cfg, nil)
 
-	body, _ := stubs.LoadStubResponseData("stubs/data/management/campaigns/list.success.json")
+	body, _ := stubs.LoadStubResponseData("../stubs/data/management/campaigns/list.success.json")
 
 	httpmock.RegisterResponder("GET", cfg.Uri+"/foo", httpmock.NewBytesResponder(http.StatusOK, body))
 
@@ -84,7 +84,7 @@ func Test_HTTP_Transport_RequestGET(t *testing.T) {
 	cfg := stubs.BuildStubConfig()
 	transport := NewHttpTransport(cfg, nil)
 
-	body, _ := stubs.LoadStubResponseData("stubs/data/management/campaigns/list.success.json")
+	body, _ := stubs.LoadStubResponseData("../stubs/data/management/campaigns/list.success.json")
 
 	httpmock.RegisterResponder("GET", cfg.Uri+"/foo", httpmock.NewBytesResponder(http.StatusOK, body))
 
@@ -99,7 +99,7 @@ func Test_HTTP_Transport_RequestPOST(t *testing.T) {
 	cfg := stubs.BuildStubConfig()
 	transport := NewHttpTransport(cfg, nil)
 
-	body, _ := stubs.LoadStubResponseData("stubs/data/management/campaigns/list.success.json")
+	body, _ := stubs.LoadStubResponseData("../stubs/data/management/campaigns/list.success.json")
 
 	httpmock.RegisterResponder("POST", cfg.Uri+"/foo", httpmock.NewBytesResponder(http.StatusOK, body))
 
@@ -114,7 +114,7 @@ func Test_HTTP_Transport_RequestPUT(t *testing.T) {
 	cfg := stubs.BuildStubConfig()
 	transport := NewHttpTransport(cfg, nil)
 
-	body, _ := stubs.LoadStubResponseData("stubs/data/management/campaigns/list.success.json")
+	body, _ := stubs.LoadStubResponseData("../stubs/data/management/campaigns/list.success.json")
 
 	httpmock.RegisterResponder("PUT", cfg.Uri+"/foo", httpmock.NewBytesResponder(http.StatusOK, body))
 

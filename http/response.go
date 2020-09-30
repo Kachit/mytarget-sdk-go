@@ -15,8 +15,13 @@ func (r *Response) IsSuccess() bool {
 	return r.raw.StatusCode < http.StatusMultipleChoices
 }
 
-func (r *Response) GetRaw() *http.Response {
+func (r *Response) GetRawResponse() *http.Response {
 	return r.raw
+}
+
+func (r *Response) GetRawBody() string {
+	body, _ := r.ReadBody()
+	return string(body)
 }
 
 func (r *Response) Unmarshal(v interface{}) error {
@@ -36,6 +41,24 @@ func (r *Response) ReadBody() ([]byte, error) {
 	return ioutil.ReadAll(r.raw.Body)
 }
 
+func (r *Response) GetError() (*ErrorResult, error) {
+	var result ErrorResult
+	err := r.Unmarshal(&result)
+	if err != nil {
+		return nil, err
+	}
+	return &result, nil
+}
+
 func NewResponse(raw *http.Response) *Response {
 	return &Response{raw: raw}
+}
+
+type ErrorResult struct {
+	Error *ErrorResultError `json:"error"`
+}
+
+type ErrorResultError struct {
+	Message string `json:"message"`
+	Code    string `json:"code"`
 }
