@@ -1,6 +1,8 @@
 # MyTarget API SDK GO
 [![Build Status](https://travis-ci.org/Kachit/mytarget-sdk-go.svg?branch=master)](https://travis-ci.org/Kachit/mytarget-sdk-go)
 [![codecov](https://codecov.io/gh/Kachit/mytarget-sdk-go/branch/master/graph/badge.svg)](https://codecov.io/gh/Kachit/mytarget-sdk-go)
+[![Go Report Card](https://goreportcard.com/badge/github.com/kachit/mytarget-sdk-go)](https://goreportcard.com/report/github.com/kachit/mytarget-sdk-go)
+[![Release](https://img.shields.io/github/v/release/Kachit/mytarget-sdk-go.svg)](https://github.com/Kachit/mytarget-sdk-go/releases)
 [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/kachit/mytarget-sdk-go/blob/master/LICENSE)
 
 ## Description
@@ -15,7 +17,7 @@ https://target.my.com/help/partners/reporting_api_statistics/ru
 
 ## Download
 ```shell
-go get github.com/kachit/mytarget-sdk-go
+go get -u github.com/kachit/mytarget-sdk-go
 ```
 
 ## Usage
