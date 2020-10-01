@@ -27,7 +27,7 @@ func (f *CampaignsListFilter) Build() map[string]interface{} {
 
 /**
 * @see https://target.my.com/doc/api/ru/resource/Campaigns
-* @return CampaignsCollection
+* @unmarshal CampaignsCollection
  */
 func (cr *CampaignsResource) GetList(filter *CampaignsListFilter) (*http.Response, error) {
 	if filter == nil {
