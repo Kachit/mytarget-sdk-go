@@ -59,10 +59,18 @@ func (f *StatsFilter) IsValid() error {
 	return nil
 }
 
+/**
+* @see https://target.my.com/adv/api-marketing/doc/stat-v2
+* @return StatsCollection[]Campaigns
+ */
 func (sr *StatisticsResource) GetCampaignStatsDaily(filter *StatsFilter) (*http.Response, error) {
 	return sr.GetStats(StatsResourceCampaigns, StatsDimensionDay, filter)
 }
 
+/**
+* @see https://target.my.com/adv/api-marketing/doc/stat-v2
+* @return StatsCollection
+ */
 func (sr *StatisticsResource) GetStats(resource StatsResource, dimension StatsDimension, filter *StatsFilter) (*http.Response, error) {
 	path := fmt.Sprintf("api/v2/statistics/%s/%s.json", string(resource), string(dimension))
 	err := filter.IsValid()

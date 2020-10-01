@@ -1,4 +1,4 @@
-# MyTarget API SDK GO
+# MyTarget API SDK GO (Unofficial)
 [![Build Status](https://travis-ci.org/Kachit/mytarget-sdk-go.svg?branch=master)](https://travis-ci.org/Kachit/mytarget-sdk-go)
 [![codecov](https://codecov.io/gh/Kachit/mytarget-sdk-go/branch/master/graph/badge.svg)](https://codecov.io/gh/Kachit/mytarget-sdk-go)
 [![Go Report Card](https://goreportcard.com/badge/github.com/kachit/mytarget-sdk-go)](https://goreportcard.com/report/github.com/kachit/mytarget-sdk-go)
@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/kachit/mytarget-sdk-go/blob/master/LICENSE)
 
 ## Description
-MyTarget API Client for Go
+Unofficial MyTarget API Client for Golang
 
 ## API documentation
 https://target.my.com/help/partners/management_api/ru
@@ -28,13 +28,14 @@ import (
     "fmt"
     "net/http"
     mytarget_sdk "github.com/kachit/mytarget-sdk-go"
+    mytarget_sdk_marketing "github.com/kachit/mytarget-sdk-go/marketing"
 )
 
 func yourFuncName(){ 
     accessToken := "Access token"
     client := mytarget_sdk.NewClientFromCredentials(accessToken, &http.Client{})
 
-    filter := &marketing.StatsFilter{}
+    filter := &mytarget_sdk_marketing.StatsFilter{}
     filter.DateFrom = time.Date(2020, time.Month(9), 1, 0, 0, 0, 0, time.UTC)
     filter.DateTo = time.Date(2020, time.Month(9), 2, 0, 0, 0, 0, time.UTC)
     response, err := client.Marketing().Statistics().GetCampaignStatsDaily(filter)
