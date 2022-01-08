@@ -1,4 +1,4 @@
-package mytarget_sdk
+package mytarget
 
 import (
 	"github.com/kachit/mytarget-sdk-go/config"
